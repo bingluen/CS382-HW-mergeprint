@@ -17,23 +17,58 @@ namespace MergeDataAndDoc
 
             parseArgs(args);
 
+            List<string> key = new List<string>();
+            List<Dictionary<string, string>> inputData = new List<Dictionary<string, string>>();
+
             if (data.Length == 0 || templete.Length == 0 || output.Length == 0)
             {
-                Console.WriteLine("Arguments error! try ");
+                Console.WriteLine("Arguments error! try again");
             }
-
-            using (StreamReader inputFile = new StreamReader(data))
-            using (StreamReader templeteFile = new StreamReader(templete))
-            using(StreamWriter outputFile = new StreamWriter(output))
+            else
             {
-                string line; //test
-                while((line = inputFile.ReadLine()) != null)
+                using (StreamReader inputFile = new StreamReader(data))
                 {
-                    string outputLine = "***" + line;
-                    Console.WriteLine("Write line: " + outputLine);
-                    outputFile.WriteLine(outputLine);
+                    // Get column name - key
+                    key.AddRange(inputFile.ReadLine().Split('\t'));
+                    
+                    //Get Data
+                    string tempStream = "";
+                    string[] tempRow;
+                    Dictionary<string, string> tempDataRow;
+                    while ((tempStream = inputFile.ReadLine()) != null)
+                    {
+                        tempDataRow = new Dictionary<string, string>();
+                        tempRow = tempStream.Split('\t');
+                        for (int i = 0; i < tempRow.Length; i++) {
+                            tempDataRow.Add(key[i], tempRow[i]);
+                        }
+                        inputData.Add(tempDataRow);
+                    }
+                }
+                using (StreamReader templeteFile = new StreamReader(templete))
+                using (StreamWriter outputFile = new StreamWriter(output))
+                {
+                    string templeteText = templeteFile.ReadToEnd();
+                    string printStream;
+                    for (int i = 0; i < inputData.Count; i++)
+                    {
+                        printStream = templeteText;
+                        for (int j = 0; j < key.Count; j++)
+                        {
+                            string replacement;
+                            if (inputData[i].TryGetValue(key[j], out replacement)) {
+                                printStream = printStream.Replace("${" + key[j] + "}", replacement);
+                            }
+                        }
+                        Console.WriteLine(printStream);
+                        Console.WriteLine('\n');
+                        outputFile.WriteLine(printStream);
+                        outputFile.WriteLine('\n');
+                    }
                 }
             }
+
+ 
             Console.ReadLine();
         }
         static void parseArgs(string[] args)
@@ -52,10 +87,6 @@ namespace MergeDataAndDoc
                 else if (args[i] == "-r" && fileName.IsMatch(args[i + 1]))
                 {
                     output = args[i + 1];
-                }
-                else
-                {
-                    i++;
                 }
             }
         }
