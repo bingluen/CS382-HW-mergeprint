@@ -24,5 +24,19 @@ namespace MergeDataAndDoc
             Program.mergePrint(testTempleteReader, testWriter);
             Assert.That(outputResult.ToString(), Is.EqualTo(outputResult));
         }
+
+        [Test]
+        public void multipleRowTest()
+        {
+            string testString = "Test Column1\tColumn2\n1\t2\n3\t4\n5\t6";
+            string testTemplete = "{Test Column1} is {Test Column2}";
+            string outputResult = "1 is 2\n3 is 4\n5 is 6";
+            StringReader testReader = new StringReader(testString);
+            StringReader testTempleteReader = new StringReader(testTemplete);
+            StringWriter testWriter = new StringWriter();
+            Program.readData(testReader);
+            Program.mergePrint(testTempleteReader, testWriter);
+            Assert.That(outputResult.ToString(), Is.EqualTo(outputResult));
+        }
     }
 }
