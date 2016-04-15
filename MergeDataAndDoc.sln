@@ -5,6 +5,15 @@ VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MergeDataAndDoc", "MergeDataAndDoc\MergeDataAndDoc.csproj", "{2F18DACC-0A62-4581-B3E1-744E57B55A73}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestCase", "TestCase\TestCase.csproj", "{161E1D23-CB6C-4005-BA44-E9AFF235E8C1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{9B67D450-67E6-4000-8CBE-577C659D30A9}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +24,10 @@ Global
 		{2F18DACC-0A62-4581-B3E1-744E57B55A73}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2F18DACC-0A62-4581-B3E1-744E57B55A73}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2F18DACC-0A62-4581-B3E1-744E57B55A73}.Release|Any CPU.Build.0 = Release|Any CPU
+		{161E1D23-CB6C-4005-BA44-E9AFF235E8C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{161E1D23-CB6C-4005-BA44-E9AFF235E8C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{161E1D23-CB6C-4005-BA44-E9AFF235E8C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{161E1D23-CB6C-4005-BA44-E9AFF235E8C1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

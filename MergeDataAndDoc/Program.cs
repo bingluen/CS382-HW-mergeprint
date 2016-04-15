@@ -9,7 +9,7 @@ using System.Text.RegularExpressions;
 
 namespace MergeDataAndDoc
 {
-    class Program
+    public class Program
     {
         private static string data = "", templete = "", output = "";
         private static List<string> key = new List<string>();
@@ -42,7 +42,7 @@ namespace MergeDataAndDoc
             Console.ReadLine();
         }
 
-        private static void mergePrint(StreamReader templeteFile, StreamWriter outputFile)
+        public static void mergePrint(TextReader templeteFile, TextWriter outputFile)
         {
             string templeteText = templeteFile.ReadToEnd();
             string printStream;
@@ -64,7 +64,7 @@ namespace MergeDataAndDoc
             }
         }
 
-        private static void readData(StreamReader inputFile)
+        public static void readData(TextReader inputFile)
         {
             // Get column name - key
             key.AddRange(inputFile.ReadLine().Split('\t'));
